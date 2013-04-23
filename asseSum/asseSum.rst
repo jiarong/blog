@@ -82,7 +82,7 @@ Assembly statistics
    Pasture         497664   538669724  24861  23082813  0.81\%      2863547487
    =======  ==============  =========  =====  ========  =========  ===========
 
-As shown in Table 1, pasture data have more and longer contigs assembled (with 800bp cutoff). The DNA content in the two metagenome assemblies share little similarity (Table 2).
+As shown in Table 1, pasture data have more and longer contigs assembled (with 800bp cutoff). The DNA content in the two metagenome assemblies share little similarity (Table 2). Rank abundance curves (Figure 5) show the pasture assembly has better coverage than forest assembly.
 
 .. table:: Table 2 Similarity between two assemblies. Contigs covered is the fraction of total contigs covered by any contigs from the other sample. Total bp covered is the fraction of total basepairs covered by contigs from the other sample.
 
@@ -93,20 +93,25 @@ As shown in Table 1, pasture data have more and longer contigs assembled (with 8
    Pasture         497664   538669724           5.20\%            1.80\%
    =======  ==============  =========  ===============  ================
 
+.. figure:: figs/FvsP_randAbun.png
+   :scale: 60%
+
+   Figure 5. Rank abundance of forest and pasture samples. Bule curve ( F.800.contigCov) is from the combined forest assembly with 800 minimum length and green curve (P.800.contigCov) is from the combined pasture assembly with 800 minimum length. The coverage is based on median of coverages on each base position in contigs after mapping.
+
 Spatial variation 
 ------------------
-Clustering and heatmap of samples (Figure 5, 6) in each treatment based on the fold coverage of top 1000 most abundant contig shows that even though sharing a fair amount of genomic content, there are still spatial  variation between samples. The closer the distance, the more similar the samples are.
+Clustering and heatmap of samples (Figure 6, 7) in each treatment based on the fold coverage of top 1000 most abundant contig shows that even though sharing a fair amount of genomic content, there are still spatial  variation between samples. The closer the distance, the more similar the samples are.
 
 .. figure:: figs/F.1500bp.cov.table.dendrogram.hellinger.png
    :scale: 60%
 
-   Figure 5. Heatmap of top 1000 most abundant contigs within forest samples. Samples are in the rows. “F” stands for forest. The number follow the “F” stands for the distance of sampling spot. For example, “F001” is 0.01m at forest. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in F01 for A. The abundance matrix is transformed by hellinger transform prior to clustering.
+   Figure 6. Heatmap of top 1000 most abundant contigs within forest samples. Samples are in the rows. “F” stands for forest. The number follow the “F” stands for the distance of sampling spot. For example, “F001” is 0.01m at forest. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in F01 for A. The abundance matrix is transformed by hellinger transform prior to clustering.
 
 .. figure:: figs/P.1500bp.cov.table.dendrogram.hellinger.png
    :scale: 60%
 
-   Figure 6. Heatmap of top 1000 most abundant contigs within pasture samples. Samples are in the rows. “P” stands for pasture. The number follow the “P” stands for the distance of sampling spot. For example, “P001” is 0.01m at pasture. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in P01 for pasture. The abundance matrix is transformed by hellinger transform prior to clustering.
+   Figure 7. Heatmap of top 1000 most abundant contigs within pasture samples. Samples are in the rows. “P” stands for pasture. The number follow the “P” stands for the distance of sampling spot. For example, “P001” is 0.01m at pasture. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in P01 for pasture. The abundance matrix is transformed by hellinger transform prior to clustering.
 
 Conclusion
 ===========
-Digital normalization and partitioning are effective methods to assemble large metagenomic data. The microbial communities across space share a fair amount of genomic content, but they are still distinct from each other, especially when distance are large. The assembly data has been uploaded to MG-RAST for annotation. Next step will be comparing the communities with gene or functional category rather than just the contigs.
+Digital normalization and partitioning are effective methods to assemble large metagenomic data. The assemblies from combined forest samples and from combined pasture samples share less than 5% similarity, which indicates the metagenomic content in forest and pasture are quite different. The microbial communities across space share a fair amount of genomic content, but they are still distinct from each other, especially when distance are large. The assembly data has been uploaded to MG-RAST for annotation. Next step will be comparing the communities with gene or functional category rather than just the contigs.
