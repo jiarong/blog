@@ -40,7 +40,7 @@ Those are the data from Forest 10 meter square (F10). From figure 6 (the heatmap
   pasture sequence? though the overall amount is  very low. For contig
   coverage, how long and how perfect is the match requirement?
 
-The amount of basepairs shared between forest and pasture take up larger portion in pasture just because pasture assembly is smaller. My main question here is *why the forest assembly is smaller?* I do know to the answer now. The conclusion I get here is that the DNA content change a lot after land conversion based on the < 5% similarity. If we want to fit in the "forest history shown in pasture sequence" story, the forest assembly should be close to a subset of pasture. I used bwa's long sequence mapping option (mem), which required a alignment score higher than 30.
+The amount of basepairs shared between forest and pasture take up larger portion in forest just because forest assembly is smaller, which is the main question I have now. The conclusion I get here is that the DNA content change a lot after land conversion based on the < 5% similarity. If we want to fit in the "forest history shown in pasture sequence" story, the forest assembly should be close to a subset of pasture. I used bwa's long sequence mapping option (mem), which required a alignment score higher than 30.
 
 ::
 
