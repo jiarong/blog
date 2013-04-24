@@ -7,7 +7,7 @@
   required number before the identical ones are set aside, but which and what
   is the other number? the length required for the repeat?
 
-"k" is the size for kmer (the length required for the repeat) and "c" is fold coverage cutoff (the required number before the identical ones are set aside).
+"k" is the size for kmer (the length of window sliding through reads) and "c" is fold coverage cutoff (the required number before the identical ones are set aside).
 
 ::
 
@@ -40,7 +40,7 @@ Those are the data from Forest 10 meter square (F10). From figure 6 (the heatmap
   pasture sequence? though the overall amount is  very low. For contig
   coverage, how long and how perfect is the match requirement?
 
-The amount of basepairs shared between forest and pasture take up larger portion in pasture just because pasture assembly is smaller. My main question here is *why the forest assembly is smaller?* The conclusion I get here is that the DNA content change a lot after land conversion based on the < 5% similarity. If we want to fit in the "forest history shown in pasture sequence" story, the forest assembly should be close to a subset of pasture.
+The amount of basepairs shared between forest and pasture take up larger portion in pasture just because pasture assembly is smaller. My main question here is *why the forest assembly is smaller?* I do know to the answer now. The conclusion I get here is that the DNA content change a lot after land conversion based on the < 5% similarity. If we want to fit in the "forest history shown in pasture sequence" story, the forest assembly should be close to a subset of pasture.
 
 ::
 
