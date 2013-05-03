@@ -56,10 +56,10 @@ The color bar scale in two heat map are different. Below you can see the revised
 It is a good point that pasture sample should be more similar among the samples based on the 16s data. I checked the dissimilarity between the samples using bray-curtis index. As shown in the following table, the variation within pasture samples are similar to the forest samples. One possible explanation is that the contigs longer than 800bp can not represent the whole community.
 
 .. figure:: figs/F.1500bp.cov.table.dendrogram.0dot15max.hellinger.png
-   :scale: 60%
+   :scale: 40%
 
 .. figure:: figs/P.1500bp.cov.table.dendrogram.0dot15max.hellinger.png
-   :scale: 60%
+   :scale: 40%
 
 
 .. table:: bray-curtis dissimilarity between forest samples based on the coverage of contigs > 800bp. Sum of pdist matrix is 10.782496.
