@@ -49,9 +49,48 @@ The amount of basepairs shared between forest and pasture take up larger portion
   in common, and that is not apparent in Fig. 5  because it merges with the
   left axis? Or?
 
+Pasture heatmap should have more similar pattern based on the 16s study. But we can not tell which one is more dominated by some species. I zoomed in Fig. 5 (shown in fig below), only to see the first 1000 most abundant contigs. We can see the top abundance in Pasture can be 2^10 = 1024, while most are about 2^8 = 256, it is more uneven in this perspective. The lack of darker blue can be explained by pasture contigs are dominated by only a few, so rest (the majority) are not abundant.
+
+The color bar scale in two heat map are different. Below you can see the revised figures with same color bar scale. Pasture have some very abundant contigs but very few.
+
+It is a good point that pasture sample should be more similar among the samples based on the 16s data. I checked the dissimilarity between the samples using bray-curtis index. As shown in the following table, the variation within pasture samples are similar to the forest samples. One possible explanation is that the contigs longer than 800bp can not represent the whole community.
+
+.. figure:: figs/F.1500bp.cov.table.dendrogram.0dot15max.hellinger.png
+   :scale: 60%
+
+.. figure:: figs/P.1500bp.cov.table.dendrogram.0dot15max.hellinger.png
+   :scale: 60%
+
+
+.. table:: bray-curtis dissimilarity between forest samples based on the coverage of contigs > 800bp. Sum of pdist matrix is 10.782496.
+
+   ====  ======  ======  ======  ======  ======
+         F01     F1      F10     F100    F001
+   ====  ======  ======  ======  ======  ======
+   F01   0.0000  0.3999  0.7251  0.5186  0.2936
+   F1    0.3999  0.0000  0.7385  0.5567  0.3930
+   F10   0.7251  0.7385  0.0000  0.6810  0.7109
+   F100  0.5186  0.5567  0.6810  0.0000  0.3741
+   F001  0.2936  0.3930  0.7109  0.3741  0.0000
+   ====  ======  ======  ======  ======  ======
+
+.. table:: bray-curtis dissimilarity between forest samples based on the coverage of contigs > 800bp. Sum of pdist matrix is 11.257510.
+
+   ====  ======  ======  ======  ======  ======
+         P01     P001    P1      P10     P100
+   ====  ======  ======  ======  ======  ======
+   P01   0.0000  0.2124  0.6787  0.5269  0.6725
+   P001  0.2124  0.0000  0.6749  0.5168  0.6315
+   P1    0.6787  0.6749  0.0000  0.5885  0.5900
+   P10   0.5269  0.5168  0.5885  0.0000  0.5366
+   P100  0.6725  0.6315  0.5900  0.5366  0.0000
+   ====  ======  ======  ======  ======  ======
+
 ::
 
   The MG-RAST for 800bp should be more useful, at least than for using if for
   the short reads as is often done, It will be interesting thought to see how
   much beyond housekeeping is seen?? Also  to see if genes of unknown taxa are
   common with each other (hence dominant clades though unknown taxa).
+
+The main reason I picked 800bp is that I want higher confidence on gene call, or some part of the contig can be annotated in case of very novel sequence. The downside is the contigs may only represent members that are relatively abundant.
