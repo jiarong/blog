@@ -49,8 +49,6 @@ The amount of basepairs shared between forest and pasture take up larger portion
   in common, and that is not apparent in Fig. 5  because it merges with the
   left axis? Or?
 
-Pasture heatmap should have more similar pattern based on the 16s study. But we can not tell which one is more dominated by some species. I zoomed in Fig. 5 (shown in fig below), only to see the first 1000 most abundant contigs. We can see the top abundance in Pasture can be 2^10 = 1024, while most are about 2^8 = 256, it is more uneven in this perspective. The lack of darker blue can be explained by pasture contigs are dominated by only a few, so rest (the majority) are not abundant.
-
 The color bar scale in two heat map are different. Below you can see the revised figures with same color bar scale. Pasture have some very abundant contigs but very few.
 
 It is a good point that pasture sample should be more similar among the samples based on the 16s data. I checked the dissimilarity between the samples using bray-curtis index. As shown in the following table, the variation within pasture samples are similar to the forest samples. One possible explanation is that the contigs longer than 800bp can not represent the whole community.
