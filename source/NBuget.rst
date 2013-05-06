@@ -18,6 +18,7 @@ Figure 1 shows a brief N-cycle diagram. Pools that can be currently measured at 
    Figure 1. N-cycle.
 
 .. table:: Table 1. Gene markers involved in N-cycle are listed. Those with boldface already have been used.
+
    +-----------------+-------------+------------------+
    | process         | gene        | function         |
    +=================+=============+==================+
@@ -39,7 +40,6 @@ Figure 1 shows a brief N-cycle diagram. Pools that can be currently measured at 
    |                 +-------------+------------------+
    |                 | nxrA        | |NO2-| => |NO3-| |
    +-----------------+-------------+------------------+
-
 
 As shown in Table 1, genes of key enzymes in |N2| fixation, denitrification, and nitrification are listed. The ones with boldface have already been used to study GLBRC samples. These gene markers can be study in three aspacts:
 
