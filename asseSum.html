@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <title>2cents on science</title>
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://lyorn.idyll.org/~gjr/blog/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="http://lyorn.idyll.org/~gjr/blog/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://lyorn.idyll.org/~gjr/blog/theme/css/font-awesome.css" type="text/css" />
+    <meta charset="utf-8" />
+  
+    
+    <!-- Javascript-->
+    <script src="http://lyorn.idyll.org/~gjr/blog/theme/js/invisible-menu-scroll.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script type="text/javascript"> 
+      $(function() {
+        invisibleMenu();
+      });
+    </script> 
+      </head>
+
+  <body id="index" class="home">
+    <div class="box-mat">
+        <div class="social-navigation">
+      <ol class="nav">
+                                      </ol>
+      </div>
+            <header id="banner" class="body">
+                <div class="banner"><a href="http://lyorn.idyll.org/~gjr/blog">2cents on science <strong></strong></a></div>
+        </header><!-- /#banner -->
+        <div class="navigation">
+          <ol>
+                                                            </ol>
+        </div><!-- /#menu -->
+      <div class="box-outer">
+        <div class="box">
+            <section id="content" class="body">
+  <header class="post">
+    <h2 class="entry-title">
+      Summary of ARMO shotgun read assembly:
+    </h2>
+  </header>
+  <footer class="post-info">
+    <abbr>
+      Mon 22 April 2013 
+               By Jiarong Guo
+        
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>(with Adina Howe, James Tiedje, Titus Brown)</p>
+<p>I have been working on the assembly of big shotgun metagenomic data from ARMO (Amazon Rain Forest Microbial  Observatory) project. The biggest challenge is the huge data size, 2TB in fastq and more than 6 billions reads after read trimming. One lucky thing is that MSU provides High Performance Computer Clusters, so we have access to memory up to 1TB. Still, to my knowledge, no assemblers can handle this amount of data with 1Tb of memory. Well, some tools like SGA may be able to handle the data if they are very redundant, but this is not the case for soil metagenomic data. <a class="reference external" href="http://arxiv.org/abs/1203.4802">Digital normalization</a>
+and <a class="reference external" href="http://arxiv.org/abs/1112.4193">partitioning</a>, two data preprocessing methods  designed by our lab (<a class="reference external" href="http://ged.msu.edu/">Dr. Titus Brown</a>) are used to make the assembly doable.</p>
+<div class="section" id="background-and-data">
+<h2>Background and data</h2>
+<p>Amazon rain forest is very important for global ecosystem and microbial communities play key roles in the nutrient cycling. The goal of this study is  to understand the effect of agriculture practice (conversion of forest to pasture) on microbial community. A survey based on 16s rRNA gene have shown that the land conversion cause higher local microbial diversity but more similar community across space. To further study the microbial community at functional level, shotgun metagenomics is used.</p>
+<p>To evaluate the effects of spatial variation, samples are taken at corner of nested 0.01m, 0.1m, 1m, 10m, 100m square plot at forest site and pasture site. Each sample from a square plot are sequenced by two Illumina HighSeq lanes.</p>
+<div class="figure">
+<img alt="static/images/expDesign.png" src="static/images/expDesign.png" style="width: 80%;" />
+<p class="caption">Figure 1. Experiment design. Samples are collected at corners are nested squares of 0.01, 0.1, 1, 10, 100 meters. Details are in this <a class="reference external" href="http://www.pnas.org/content/110/3/988/F2.expansion.html">paper</a></p>
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods</h2>
+<p>Data trimming: the end of reads with quality score 2 (ASCII “B”) are trimmed and reads with length longer than 30bp are kept. Pair end reads with overlap are stitched with FLASH (version 1.0.3).</p>
+<p>Digital normalization, sequencing artifact removing, and partitioning: This step is done by a bash script (<a class="reference external" href="https://github.com/jiarong/khmer/blob/master/ged-lab/armo-gjr/asse6.bash">https://github.com/jiarong/khmer/blob/master/ged-lab/armo-gjr/asse6.bash</a>).</p>
+<p>Assembly: VELVET assembler is used to assemble the group of sequence file with kmer size of  33, 37, 39, 49, 69. The one producing the most overall assembly length is picked. Another version of VELVET compiled with “BIGASSEMBLY” flag is used for assembly the biggest group of sequence file.</p>
+</div>
+<div class="section" id="results">
+<h2>Results</h2>
+<div class="section" id="computational-cost">
+<h3>Computational cost</h3>
+<p>Digital normalization: 150 cpu hours to finish 10 lanes of Illumina HighSeq data for each treatment (forest or pasture) with 1TB memory.</p>
+<p>Artifact removal: 40 cpu hours to finish 10 lanes.</p>
+<p>Partitioning: 1) 69 cpu hours for loading graph; 2) 346 cpu hours for partitioning graph (12 hours with 32 core on HPC); 3) 12 cpu hours for merging graph; 4) 42 cpu hours for annotating partition; 5) 13 cpu hours for extracting partitions. In total, the partitioning took one week to finish, because the most time consuming step, partitioning graph can be run with multi-threads.</p>
+<p>Assembly: There is always one group file that is significantly larger than the others after partitioning because reads from different species could be connected by some conserved genes or artifacts. We call it the “lump”. The “lump” took about 20 cpu hours, while the other small group files took less than 0.5 cpu hours.</p>
+<div class="figure">
+<img alt="static/images/flowChart.png" src="static/images/flowChart.png" style="width: 80%;" />
+<p class="caption">Figure 2: Flow chart of the assembling process.</p>
+</div>
+</div>
+<div class="section" id="genomic-saturation">
+<h3>Genomic saturation</h3>
+<p>Figure 3, 4 shows there is a fair amount of shared sequence among samples within the same treatment (forest), which also suggests the data within the treatment can be combined for better assemblies.</p>
+<div class="figure">
+<img alt="static/images/FdigiNormByLane.report.png" src="static/images/FdigiNormByLane.report.png" style="width: 80%;" />
+<p class="caption">Figure 3. Genomic content saturation curve from digital normalization output from forest samples. The X axis the number of reads processed by digital normalization. The Y axis the fraction of reads kept after digital normalization in the current sample data.</p>
+</div>
+<div class="figure">
+<img alt="static/images/PdigiNormByLane.report.png" src="static/images/PdigiNormByLane.report.png" style="width: 80%;" />
+<p class="caption">Figure 4. Genomic content saturation curve from digital normalization output from the pasture samples. The X axis the number of reads processed by digital normalization. The Y axis the fraction of reads kept after digital normalization in the current sample data.</p>
+</div>
+</div>
+<div class="section" id="assembly-statistics">
+<h3>Assembly statistics</h3>
+<table border="1" class="docutils">
+<caption>Table 1: Assembly statistics. Minimum contig length of 800 bp is chosen. The low mapping percentage is due to the high minimum contig length cutoff.</caption>
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="14%" />
+<col width="8%" />
+<col width="13%" />
+<col width="14%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Sample</th>
+<th class="head">&gt;800bp contigs</th>
+<th class="head">total bp</th>
+<th class="head">max</th>
+<th class="head">mapping</th>
+<th class="head">mapping%</th>
+<th class="head">total reads</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Forest</td>
+<td>265073</td>
+<td>271553890</td>
+<td>9115</td>
+<td>10732078</td>
+<td>0.37%</td>
+<td>2923068636</td>
+</tr>
+<tr><td>Pasture</td>
+<td>497664</td>
+<td>538669724</td>
+<td>24861</td>
+<td>23082813</td>
+<td>0.81%</td>
+<td>2863547487</td>
+</tr>
+</tbody>
+</table>
+<p>As shown in Table 1, pasture data have more and longer contigs assembled (with 800bp cutoff). The DNA content in the two metagenome assemblies share little similarity (Table 2). Rank abundance curves (Figure 5) show the pasture assembly has better coverage than forest assembly.</p>
+<table border="1" class="docutils">
+<caption>Table 2 Similarity between two assemblies. Contigs covered is the fraction of total contigs covered by any contigs from the other sample. Total bp covered is the fraction of total basepairs covered by contigs from the other sample.</caption>
+<colgroup>
+<col width="11%" />
+<col width="23%" />
+<col width="15%" />
+<col width="25%" />
+<col width="26%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Sample</th>
+<th class="head">&gt;800bp contigs</th>
+<th class="head">total bp</th>
+<th class="head">contigs covered</th>
+<th class="head">total bp covered</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Forest</td>
+<td>265073</td>
+<td>271553890</td>
+<td>9.30%</td>
+<td>3.50%</td>
+</tr>
+<tr><td>Pasture</td>
+<td>497664</td>
+<td>538669724</td>
+<td>5.20%</td>
+<td>1.80%</td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img alt="static/images/FvsP_randAbun.png" src="static/images/FvsP_randAbun.png" style="width: 80%;" />
+<p class="caption">Figure 5. Rank abundance of forest and pasture samples. Bule curve ( F.800.contigCov) is from the combined forest assembly with 800 minimum length and green curve (P.800.contigCov) is from the combined pasture assembly with 800 minimum length. The coverage is based on median of coverages on each base position in contigs after mapping.</p>
+</div>
+</div>
+<div class="section" id="spatial-variation">
+<h3>Spatial variation</h3>
+<p>Clustering and heatmap of samples (Figure 6, 7) in each treatment based on the fold coverage of top 1000 most abundant contig shows that even though sharing a fair amount of genomic content, there are still spatial  variation between samples. The closer the distance, the more similar the samples are.</p>
+<div class="figure">
+<img alt="static/images/F.1500bp.cov.table.dendrogram.hellinger.png" src="static/images/F.1500bp.cov.table.dendrogram.hellinger.png" style="width: 80%;" />
+<p class="caption">Figure 6. Heatmap of top 1000 most abundant contigs within forest samples. Samples are in the rows. “F” stands for forest. The number follow the “F” stands for the distance of sampling spot. For example, “F001” is 0.01m at forest. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in F01 for A. The abundance matrix is transformed by hellinger transform prior to clustering.</p>
+</div>
+<div class="figure">
+<img alt="static/images/P.1500bp.cov.table.dendrogram.hellinger.png" src="static/images/P.1500bp.cov.table.dendrogram.hellinger.png" style="width: 80%;" />
+<p class="caption">Figure 7. Heatmap of top 1000 most abundant contigs within pasture samples. Samples are in the rows. “P” stands for pasture. The number follow the “P” stands for the distance of sampling spot. For example, “P001” is 0.01m at pasture. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in P01 for pasture. The abundance matrix is transformed by hellinger transform prior to clustering.</p>
+</div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>Digital normalization and partitioning are effective methods to assemble large metagenomic data. The assemblies from combined forest samples and from combined pasture samples share less than 5% similarity, which indicates the metagenomic content in forest and pasture are quite different. The microbial communities across space share a fair amount of genomic content, but they are still distinct from each other, especially when distance are large. The assembly data has been uploaded to MG-RAST for annotation. Next step will be comparing the communities with gene or functional category rather than just the contigs.</p>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+        </div> <!-- box -->
+      </div> <!-- box-outer -->
+      <div class="bottom"></div>
+      <footer id="contentinfo" class="footer">
+          <div>
+              <a href="http://lyorn.idyll.org/~gjr/blog">Jiarong Guo</a> (2013)
+          </div>
+          <div>
+              This work is licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a href="https://github.com/jarv/water-iris">Github</a>
+          </div>
+          <div>
+              powered by <a href="http://getpelican.com/">Pelican</a>
+              and <a href="http://python.org">Python</a>. 
+              <a href="http://github.com/jarv/water-iris">Theme</a> by <a href="http://jarv.org">John Jarvis</a> based on <a href="http://github.com/slok/iris">Iris</a>, <a href="https://github.com/getpelican/pelican-themes/tree/master/waterspill-en">Waterspill</a> and the <a href="http://flask.pocoo.org/">Flask</a> theme
+          </div>
+          <div>
+              Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/">font awesome</a>.
+              <a href="http://www.google.com/webfonts/specimen/Gabriela">Title</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+          </div>
+          <div class="social">
+                                      </div>
+      </footer><!-- /#contentinfo -->
+
+      <!--Add statistycs-->
+          </div>
+  </body>
+</html>
