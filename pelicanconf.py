@@ -36,4 +36,4 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 THEME = '/home/gjr/Public/software/pelican-themes/water-iris'
-#STATIC_PATHS = ['figs',]
+STATIC_PATHS = ['static/images',]
