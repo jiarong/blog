@@ -7,7 +7,7 @@ and &lt;a class="reference external" href="http://arxiv.org/abs/1112.4193"&gt;pa
 &lt;p&gt;Amazon rain forest is very important for global ecosystem and microbial communities play key roles in the nutrient cycling. The goal of this study is  to understand the effect of agriculture practice (conversion of forest to pasture) on microbial community. A survey based on 16s rRNA gene have shown that the land conversion cause higher local microbial diversity but more similar community across space. To further study the microbial community at functional level, shotgun metagenomics is used.&lt;/p&gt;
 &lt;p&gt;To evaluate the effects of spatial variation, samples are taken at corner of nested 0.01m, 0.1m, 1m, 10m, 100m square plot at forest site and pasture site. Each sample from a square plot are sequenced by two Illumina HighSeq lanes.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="static/images/expDesign.png" src="static/images/expDesign.png" style="width: 80%;" /&gt;
+&lt;img alt="|filename|/images/expDesign.png" src="http://jiarong.github.io/blog/static/images/expDesign.png" style="width: 80%;" /&gt;
 &lt;p class="caption"&gt;Figure 1. Experiment design. Samples are collected at corners are nested squares of 0.01, 0.1, 1, 10, 100 meters. Details are in this &lt;a class="reference external" href="http://www.pnas.org/content/110/3/988/F2.expansion.html"&gt;paper&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
