@@ -22,7 +22,7 @@ Amazon rain forest is very important for global ecosystem and microbial communit
 
 To evaluate the effects of spatial variation, samples are taken at corner of nested 0.01m, 0.1m, 1m, 10m, 100m square plot at forest site and pasture site. Each sample from a square plot are sequenced by two Illumina HighSeq lanes.
 
-.. figure:: static/images/expDesign.png
+.. figure:: |filename|/images/expDesign.png
    :width: 80%
 
    Figure 1. Experiment design. Samples are collected at corners are nested squares of 0.01, 0.1, 1, 10, 100 meters. Details are in this `paper <http://www.pnas.org/content/110/3/988/F2.expansion.html>`__
@@ -49,7 +49,7 @@ Partitioning: 1) 69 cpu hours for loading graph; 2) 346 cpu hours for partitioni
 
 Assembly: There is always one group file that is significantly larger than the others after partitioning because reads from different species could be connected by some conserved genes or artifacts. We call it the “lump”. The “lump” took about 20 cpu hours, while the other small group files took less than 0.5 cpu hours.
 
-.. figure:: static/images/flowChart.png
+.. figure:: |filename|/images/flowChart.png
    :width: 80%
 
    Figure 2: Flow chart of the assembling process.
@@ -58,12 +58,12 @@ Genomic saturation
 ------------------
 Figure 3, 4 shows there is a fair amount of shared sequence among samples within the same treatment (forest), which also suggests the data within the treatment can be combined for better assemblies.
 
-.. figure:: static/images/FdigiNormByLane.report.png
+.. figure:: |filename|/images/FdigiNormByLane.report.png
    :width: 80%
 
    Figure 3. Genomic content saturation curve from digital normalization output from forest samples. The X axis the number of reads processed by digital normalization. The Y axis the fraction of reads kept after digital normalization in the current sample data.
 
-.. figure:: static/images/PdigiNormByLane.report.png
+.. figure:: |filename|/images/PdigiNormByLane.report.png
    :width: 80%
 
    Figure 4. Genomic content saturation curve from digital normalization output from the pasture samples. The X axis the number of reads processed by digital normalization. The Y axis the fraction of reads kept after digital normalization in the current sample data.
@@ -93,7 +93,7 @@ As shown in Table 1, pasture data have more and longer contigs assembled (with 8
    Pasture         497664   538669724           5.20\%            1.80\%
    =======  ==============  =========  ===============  ================
 
-.. figure:: static/images/FvsP_randAbun.png
+.. figure:: |filename|/images/FvsP_randAbun.png
    :width: 80%
 
    Figure 5. Rank abundance of forest and pasture samples. Bule curve ( F.800.contigCov) is from the combined forest assembly with 800 minimum length and green curve (P.800.contigCov) is from the combined pasture assembly with 800 minimum length. The coverage is based on median of coverages on each base position in contigs after mapping.
@@ -102,12 +102,12 @@ Spatial variation
 ------------------
 Clustering and heatmap of samples (Figure 6, 7) in each treatment based on the fold coverage of top 1000 most abundant contig shows that even though sharing a fair amount of genomic content, there are still spatial  variation between samples. The closer the distance, the more similar the samples are.
 
-.. figure:: static/images/F.1500bp.cov.table.dendrogram.hellinger.png
+.. figure:: |filename|/images/F.1500bp.cov.table.dendrogram.hellinger.png
    :width: 80%
 
    Figure 6. Heatmap of top 1000 most abundant contigs within forest samples. Samples are in the rows. “F” stands for forest. The number follow the “F” stands for the distance of sampling spot. For example, “F001” is 0.01m at forest. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in F01 for A. The abundance matrix is transformed by hellinger transform prior to clustering.
 
-.. figure:: static/images/P.1500bp.cov.table.dendrogram.hellinger.png
+.. figure:: |filename|/images/P.1500bp.cov.table.dendrogram.hellinger.png
    :width: 80%
 
    Figure 7. Heatmap of top 1000 most abundant contigs within pasture samples. Samples are in the rows. “P” stands for pasture. The number follow the “P” stands for the distance of sampling spot. For example, “P001” is 0.01m at pasture. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in P01 for pasture. The abundance matrix is transformed by hellinger transform prior to clustering.

@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Jiarong Guo'
 SITENAME = u'2cents on science'
-SITEURL = 'http://lyorn.idyll.org/~gjr/blog'
+#SITEURL = 'http://lyorn.idyll.org/~gjr/blog'
+SITEURL = 'http://jiarong.github.io/blog'
 
 TIMEZONE = 'America/New_York'
 
@@ -36,4 +37,4 @@ DEFAULT_PAGINATION = 5
 #RELATIVE_URLS = True
 
 THEME = '/home/gjr/Public/software/pelican-themes/water-iris'
-STATIC_PATHS = ['static/images',]
+STATIC_PATHS = ['images',]
