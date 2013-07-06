@@ -26,7 +26,7 @@ and &lt;a class="reference external" href="http://arxiv.org/abs/1112.4193"&gt;pa
 &lt;p&gt;Partitioning: 1) 69 cpu hours for loading graph; 2) 346 cpu hours for partitioning graph (12 hours with 32 core on HPC); 3) 12 cpu hours for merging graph; 4) 42 cpu hours for annotating partition; 5) 13 cpu hours for extracting partitions. In total, the partitioning took one week to finish, because the most time consuming step, partitioning graph can be run with multi-threads.&lt;/p&gt;
 &lt;p&gt;Assembly: There is always one group file that is significantly larger than the others after partitioning because reads from different species could be connected by some conserved genes or artifacts. We call it the “lump”. The “lump” took about 20 cpu hours, while the other small group files took less than 0.5 cpu hours.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="static/images/flowChart.png" src="static/images/flowChart.png" style="width: 80%;" /&gt;
+&lt;img alt="|filename|/images/flowChart.png" src="http://jiarong.github.io/blog/static/images/flowChart.png" style="width: 80%;" /&gt;
 &lt;p class="caption"&gt;Figure 2: Flow chart of the assembling process.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -34,11 +34,11 @@ and &lt;a class="reference external" href="http://arxiv.org/abs/1112.4193"&gt;pa
 &lt;h3&gt;Genomic saturation&lt;/h3&gt;
 &lt;p&gt;Figure 3, 4 shows there is a fair amount of shared sequence among samples within the same treatment (forest), which also suggests the data within the treatment can be combined for better assemblies.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="static/images/FdigiNormByLane.report.png" src="static/images/FdigiNormByLane.report.png" style="width: 80%;" /&gt;
+&lt;img alt="|filename|/images/FdigiNormByLane.report.png" src="http://jiarong.github.io/blog/static/images/FdigiNormByLane.report.png" style="width: 80%;" /&gt;
 &lt;p class="caption"&gt;Figure 3. Genomic content saturation curve from digital normalization output from forest samples. The X axis the number of reads processed by digital normalization. The Y axis the fraction of reads kept after digital normalization in the current sample data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="static/images/PdigiNormByLane.report.png" src="static/images/PdigiNormByLane.report.png" style="width: 80%;" /&gt;
+&lt;img alt="|filename|/images/PdigiNormByLane.report.png" src="http://jiarong.github.io/blog/static/images/PdigiNormByLane.report.png" style="width: 80%;" /&gt;
 &lt;p class="caption"&gt;Figure 4. Genomic content saturation curve from digital normalization output from the pasture samples. The X axis the number of reads processed by digital normalization. The Y axis the fraction of reads kept after digital normalization in the current sample data.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -118,7 +118,7 @@ and &lt;a class="reference external" href="http://arxiv.org/abs/1112.4193"&gt;pa
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="static/images/FvsP_randAbun.png" src="static/images/FvsP_randAbun.png" style="width: 80%;" /&gt;
+&lt;img alt="|filename|/images/FvsP_randAbun.png" src="http://jiarong.github.io/blog/static/images/FvsP_randAbun.png" style="width: 80%;" /&gt;
 &lt;p class="caption"&gt;Figure 5. Rank abundance of forest and pasture samples. Bule curve ( F.800.contigCov) is from the combined forest assembly with 800 minimum length and green curve (P.800.contigCov) is from the combined pasture assembly with 800 minimum length. The coverage is based on median of coverages on each base position in contigs after mapping.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -126,11 +126,11 @@ and &lt;a class="reference external" href="http://arxiv.org/abs/1112.4193"&gt;pa
 &lt;h3&gt;Spatial variation&lt;/h3&gt;
 &lt;p&gt;Clustering and heatmap of samples (Figure 6, 7) in each treatment based on the fold coverage of top 1000 most abundant contig shows that even though sharing a fair amount of genomic content, there are still spatial  variation between samples. The closer the distance, the more similar the samples are.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="static/images/F.1500bp.cov.table.dendrogram.hellinger.png" src="static/images/F.1500bp.cov.table.dendrogram.hellinger.png" style="width: 80%;" /&gt;
+&lt;img alt="|filename|/images/F.1500bp.cov.table.dendrogram.hellinger.png" src="http://jiarong.github.io/blog/static/images/F.1500bp.cov.table.dendrogram.hellinger.png" style="width: 80%;" /&gt;
 &lt;p class="caption"&gt;Figure 6. Heatmap of top 1000 most abundant contigs within forest samples. Samples are in the rows. “F” stands for forest. The number follow the “F” stands for the distance of sampling spot. For example, “F001” is 0.01m at forest. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in F01 for A. The abundance matrix is transformed by hellinger transform prior to clustering.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="figure"&gt;
-&lt;img alt="static/images/P.1500bp.cov.table.dendrogram.hellinger.png" src="static/images/P.1500bp.cov.table.dendrogram.hellinger.png" style="width: 80%;" /&gt;
+&lt;img alt="|filename|/images/P.1500bp.cov.table.dendrogram.hellinger.png" src="http://jiarong.github.io/blog/static/images/P.1500bp.cov.table.dendrogram.hellinger.png" style="width: 80%;" /&gt;
 &lt;p class="caption"&gt;Figure 7. Heatmap of top 1000 most abundant contigs within pasture samples. Samples are in the rows. “P” stands for pasture. The number follow the “P” stands for the distance of sampling spot. For example, “P001” is 0.01m at pasture. Contigs are the columns (name not shown due to large amount). The columns are sorted based on the abundance in P01 for pasture. The abundance matrix is transformed by hellinger transform prior to clustering.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
