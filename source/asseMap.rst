@@ -42,7 +42,8 @@ Contig length cutoff
 It is obvious that the lower minimum contig length cutoff can give higher raw reads mapping back rate. But here I want to emphasize the relative abundance of the short contigs. Figure 1 shows the majority (>95%) of contigs are less than 1000bp and about 50% of contigs are less than 500bp when 400bp is chosen as minimum. The minimum contig length should be a key parameter to be reported together with raw read mapping rate.
 In my data, 800bp minimum cutoff gives 0.37% mapping back rate, while 400bp cutoff gives 2.97%. But the mapping back rate is still low based on the portion of overall reads (25%) thrown away by digital normalization.
 
-.. figure:: |filename|/images/F.contigs.400bp.fasta.lenDist.png
+.. .. figure:: |filename|/images/F.contigs.400bp.fasta.lenDist.png
+.. figure:: static/images/F.contigs.400bp.fasta.lenDist.png
    :width: 80%
 
    Figure 1: cumulative distribution of contigs based on their lengths. Contigs have minimum length cutoff of 400bp.
@@ -82,8 +83,9 @@ Now lets go back to the two original two problems:
 1. 25% reads thrown away by the digital normalization process should be from speices with good coverage (> 10).  
 2. low mapping back rate compared to the other project (10% -15%).
 
+1) The bwa-mem shows 22.80% of reads contributing to the assembly and the number (22.80%) is close to 25%. However, the minimum length chosen here is 300bp. If longer minimum length was chosen, the mapping rate would be very low. Thus there is still room for improvement to get longer contigs. 
 
-1) The bwa-mem shows 22.80% of reads contributing to the assembly and the number (22.80%) is close to 25%. However, the minimum length chosen here is 300bp. If longer minimum length was chosen, the mapping rate would be very low. Thus there is still room for improvement to get longer contigs. 2) First, the metagenome yielding 10% -15% read mapping rate has very similar size to mine, but mine is pooled data from five different location so probably lower coverage. Second, I used bwa-aln instead of bowtie2-e2e. As shown in Table 2, bowtie2-e2e gave higher mapping rate than bwa-aln.
+2) First, the metagenome yielding 10% -15% read mapping rate has very similar size to mine, but mine is pooled data from five different location so probably lower coverage. Second, I used bwa-aln instead of bowtie2-e2e. As shown in Table 2, bowtie2-e2e gave higher mapping rate than bwa-aln.
 
 Conclusion
 ==========
