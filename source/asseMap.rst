@@ -1,5 +1,5 @@
 ##########################################################
-Metagenome Assembly - throughts on reads mapping back rate
+Metagenome Assembly - thoughts on reads mapping back rate
 ##########################################################
 
 :Author: Jiarong Guo
@@ -81,6 +81,7 @@ Now lets go back to the two original two problems:
 
 1. 25% reads thrown away by the digital normalization process should be from speices with good coverage (> 10).  
 2. low mapping back rate compared to the other project (10% -15%).
+
 
 1) The bwa-mem shows 22.80% of reads contributing to the assembly and the number (22.80%) is close to 25%. However, the minimum length chosen here is 300bp. If longer minimum length was chosen, the mapping rate would be very low. Thus there is still room for improvement to get longer contigs. 2) First, the metagenome yielding 10% -15% read mapping rate has very similar size to mine, but mine is pooled data from five different location so probably lower coverage. Second, I used bwa-aln instead of bowtie2-e2e. As shown in Table 2, bowtie2-e2e gave higher mapping rate than bwa-aln.
 
