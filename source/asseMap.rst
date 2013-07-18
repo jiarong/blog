@@ -54,7 +54,7 @@ I then tested the different mapping methods. The mappers (bwa-aln, bowtie2-e2e, 
 .. Table:: Table 2: Comparison of the different mapping methods. F is all the reads of the forest soil metagenome. Flump is a the biggest partition of that sample. The reads are mapped the contigs with 400bp minimum cutoff.
 
     =====  =======  =======  ===========  =============  ======
-           bwa-aln  bwa-mem  bowtie2-e2e  bowtie2-local  bowtie
+    data   bwa-aln  bwa-mem  bowtie2-e2e  bowtie2-local  bowtie
     =====  =======  =======  ===========  =============  ======
     Flump    10.1%    35.1%        14.5%          31.4%    7.5%
     F         2.2%     8.0%         3.3%           6.8%     N/A
@@ -67,7 +67,7 @@ After digital normalization and partition, there is no consensus on best way (as
 .. Table:: Table 3: Assembly statistics of multiple K merging method and best K method applied to individual partitions of the forest soil metagenome.
 
     =============  ==============  ==========  =====
-                   >400bp contigs  total bp    max
+    method         >400bp contigs  total bp    max
     =============  ==============  ==========  =====
     multiK merged        13594068  7722481956  17000
     bestK                 3916562  2124266385   9115
@@ -78,6 +78,7 @@ Improved reads mapping back rate
 The multiple K merged assembly with 300bp minimum cutoff had **5.61%** reads mapped with bwa-aln and **22.80%** with bwa-mem. The differece of bwa-aln and bwa-mem shows about 17% of reads are partially mapped to the assembly, which indicates the assembly is highly chimeric.
 
 Now lets go back to the two original two problems:
+
 1. 25% reads thrown away by the digital normalization process should be from speices with good coverage (> 10).  
 2. low mapping back rate compared to the other project (10% -15%).
 
@@ -87,6 +88,7 @@ Conclusion
 ==========
 
 The read mapping back rate is an important parameter for evaluating the quality of metagenome assembly and deciding whether sequencing depth is enough for assembly. Summary of the points learnt:
+
 - Minimum length cutoff and read mapping tool can change the mapping rate a lot, so it is important to check these two parameter when comparing the read mapping back rate. 
 - Unlike single genome assemlby, merging multiple K can metagenome assembly a lot.
 - The mapping rate difference between bwa-mem and bwa-aln can be an indicator for chimeric level of the assembly.
