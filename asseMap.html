@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <title>2cents on science</title>
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet' type='text/css'>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://jiarong.github.io/blog/theme/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="http://jiarong.github.io/blog/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://jiarong.github.io/blog/theme/css/font-awesome.css" type="text/css" />
+    <meta charset="utf-8" />
+  
+    
+    <!-- Javascript-->
+    <script src="http://jiarong.github.io/blog/theme/js/invisible-menu-scroll.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script type="text/javascript"> 
+      $(function() {
+        invisibleMenu();
+      });
+    </script> 
+      </head>
+
+  <body id="index" class="home">
+    <div class="box-mat">
+        <div class="social-navigation">
+      <ol class="nav">
+                                      </ol>
+      </div>
+            <header id="banner" class="body">
+                <div class="banner"><a href="http://jiarong.github.io/blog">2cents on science <strong></strong></a></div>
+        </header><!-- /#banner -->
+        <div class="navigation">
+          <ol>
+                                                            </ol>
+        </div><!-- /#menu -->
+      <div class="box-outer">
+        <div class="box">
+            <section id="content" class="body">
+  <header class="post">
+    <h2 class="entry-title">
+      Metagenome Assembly - thoughts on reads mapping back rate
+    </h2>
+  </header>
+  <footer class="post-info">
+    <abbr>
+      Mon 01 July 2013 
+               By Jiarong Guo
+        
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>(with Adina Howe, James Tiedje, Titus Brown)</p>
+<div class="section" id="background">
+<h2>Background</h2>
+<p>This is a follow-up on <a class="reference external" href="http://jiarong.github.io/blog/asseSum.html">another blog</a> post on shotgun metagenome assembly of the ARMO (Amazon Rain Forest Microbial Observatory) project. Here I will mainly discuss the problem of low raw reads mapping back rate to the assembled contigs (Table 1).</p>
+<table border="1" class="docutils">
+<caption>Table 1: Assembly statistics. Minimum contig length of 800 bp is chosen. The low mapping percentage is due to the high minimum contig length cutoff.</caption>
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="14%" />
+<col width="8%" />
+<col width="13%" />
+<col width="14%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Sample</th>
+<th class="head">&gt;800bp contigs</th>
+<th class="head">total bp</th>
+<th class="head">max</th>
+<th class="head">mapping</th>
+<th class="head">mapping%</th>
+<th class="head">total reads</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Forest</td>
+<td>265073</td>
+<td>271553890</td>
+<td>9115</td>
+<td>10732078</td>
+<td>0.37%</td>
+<td>2923068636</td>
+</tr>
+<tr><td>Pasture</td>
+<td>497664</td>
+<td>538669724</td>
+<td>24861</td>
+<td>23082813</td>
+<td>0.81%</td>
+<td>2863547487</td>
+</tr>
+</tbody>
+</table>
+<p>As shown in Table 1, pasture data have more and longer contigs assembled (with 800bp cutoff). The DNA content in the two metagenome assemblies share little similarity (Table 2). Rank abundance curves (Figure 5) show the pasture assembly has better coverage than forest assembly.</p>
+<p>There are two reasons that I can not use a common explaination (excuse) &quot;bacause it is a metagenome&quot;: 1) <a class="reference external" href="http://ivory.idyll.org/blog/">Dr.Titus Brown</a> pointed out the digital normalization output showed the significant genomic saturation (figure 3, 4 in <a class="reference external" href="http://jiarong.github.io/blog/asseSum.html">this post</a>). About 25% of the overall data were thrown away by digital normalization, which means they are from genomes with more than 10 fold coverage) and should be assembled. 2) with the same methods (digital normalization and partitioning), <a class="reference external" href="http://adina.github.io/">Dr. Adina Howe</a> had acheived the between 10% - 15% raw read mapping back rate on another soil metagenome project.</p>
+</div>
+<div class="section" id="results">
+<h2>Results</h2>
+<p>To track down the problem, I can think of two most probable causes:</p>
+<ul class="simple">
+<li>the contig length cutoff</li>
+<li>the mapping tools</li>
+<li>the assembly tools</li>
+</ul>
+<div class="section" id="contig-length-cutoff">
+<h3>Contig length cutoff</h3>
+<p>It is obvious that the lower minimum contig length cutoff can give higher raw reads mapping back rate. But here I want to emphasize the relative abundance of the short contigs. Figure 1 shows the majority (&gt;95%) of contigs are less than 1000bp and about 50% of contigs are less than 500bp when 400bp is chosen as minimum. The minimum contig length should be a key parameter to be reported together with raw read mapping rate.
+In my data, 800bp minimum cutoff gives 0.37% mapping back rate, while 400bp cutoff gives 2.97%. But the mapping back rate is still low based on the portion of overall reads (25%) thrown away by digital normalization.</p>
+<!-- .. figure:: |filename|/images/F.contigs.400bp.fasta.lenDist.png -->
+<div class="figure">
+<img alt="static/images/F.contigs.400bp.fasta.lenDist.png" src="static/images/F.contigs.400bp.fasta.lenDist.png" style="width: 80%;" />
+<p class="caption">Figure 1: cumulative distribution of contigs based on their lengths. Contigs have minimum length cutoff of 400bp.</p>
+</div>
+</div>
+<div class="section" id="mapping-methods">
+<h3>Mapping methods</h3>
+<p>I then tested the different mapping methods. The mappers (bwa-aln, bowtie2-e2e, bowtie) requiring the whole read mapped (global alignment) should have lower mapping rate than those (bwa-mem and bowtie2-local) allowing partial match (local alignment), which is confirmed by my testing results (Table 2). Bowtie2-e2e gave higher mapping rate bowtie due to allowing mismatches.</p>
+<table border="1" class="docutils">
+<caption>Table 2: Comparison of the different mapping methods. F is all the reads of the forest soil metagenome. Flump is a the biggest partition of that sample. The reads are mapped the contigs with 400bp minimum cutoff.</caption>
+<colgroup>
+<col width="10%" />
+<col width="14%" />
+<col width="14%" />
+<col width="22%" />
+<col width="27%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">data</th>
+<th class="head">bwa-aln</th>
+<th class="head">bwa-mem</th>
+<th class="head">bowtie2-e2e</th>
+<th class="head">bowtie2-local</th>
+<th class="head">bowtie</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Flump</td>
+<td>10.1%</td>
+<td>35.1%</td>
+<td>14.5%</td>
+<td>31.4%</td>
+<td>7.5%</td>
+</tr>
+<tr><td>F</td>
+<td>2.2%</td>
+<td>8.0%</td>
+<td>3.3%</td>
+<td>6.8%</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="assembly-methods-on-partitions">
+<h3>Assembly methods on partitions</h3>
+<p>After digital normalization and partition, there is no consensus on best way (assembler) to assemble individual partitions. I previously tried a range of Ks and picked the assembly with most assembled basepairs. By merging different assembly from K, I got significantly more contigs (Table 3), which suggests each partition still consists of organisms with different coverage.</p>
+<table border="1" class="docutils">
+<caption>Table 3: Assembly statistics of multiple K merging method and best K method applied to individual partitions of the forest soil metagenome.</caption>
+<colgroup>
+<col width="31%" />
+<col width="33%" />
+<col width="24%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">method</th>
+<th class="head">&gt;400bp contigs</th>
+<th class="head">total bp</th>
+<th class="head">max</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>multiK merged</td>
+<td>13594068</td>
+<td>7722481956</td>
+<td>17000</td>
+</tr>
+<tr><td>bestK</td>
+<td>3916562</td>
+<td>2124266385</td>
+<td>9115</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="improved-reads-mapping-back-rate">
+<h3>Improved reads mapping back rate</h3>
+<p>The multiple K merged assembly with 300bp minimum cutoff had <strong>5.61%</strong> reads mapped with bwa-aln and <strong>22.80%</strong> with bwa-mem. The differece of bwa-aln and bwa-mem shows about 17% of reads are partially mapped to the assembly, which indicates the assembly is highly chimeric.</p>
+<p>Now lets go back to the two original two problems:</p>
+<ol class="arabic">
+<li><p class="first">25% reads thrown away by the digital normalization process should be from speices with good coverage (&gt; 10).</p>
+<p>The bwa-mem shows 22.80% of reads contributing to the assembly and the number (22.80%) is close to 25%. However, the minimum length chosen here is 300bp. If longer minimum length was chosen, the mapping rate would be very low. Thus there is still room for improvement to get longer contigs.</p>
+</li>
+<li><p class="first">low mapping back rate compared to the other project (10% -15%).</p>
+<p>First, the metagenome yielding 10% -15% read mapping rate has very similar size to mine, but mine is pooled data from five different location so probably lower coverage. Second, I used bwa-aln instead of bowtie2-e2e. As shown in Table 2, bowtie2-e2e gave higher mapping rate than bwa-aln.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>The read mapping back rate is an important parameter for evaluating the quality of metagenome assembly and deciding whether sequencing depth is enough for assembly. Summary of the points learnt:</p>
+<ul class="simple">
+<li>Minimum length cutoff and read mapping tool can change the mapping rate a lot, so it is important to check these two parameter when comparing the read mapping back rate.</li>
+<li>Unlike single genome assemlby, merging multiple K can improve metagenome assembly a lot.</li>
+<li>The mapping rate difference between bwa-mem and bwa-aln can be an indicator for chimeric level of the assembly.</li>
+</ul>
+</div>
+<div class="section" id="methods">
+<h2>Methods</h2>
+<p>For assembly tool, velvet (velveth and velvetg) was used with default parameters. Multiple K from 29 to 69 with a step of 4 were chosen except for the largest partition. A step of 10 was used for the largest partition. SGA (fm-merge) is used for merging the assemblies.</p>
+<p>For mapping tools, bwa-aln allowed 0.01 mismatch (bwa aln -n 0.01) and bowtie allow 2 mismatch (bowtie -S -v 2). Bwa-mem (bwa mem), Bowtie2-e2e (bowtie2 --end-to-end) and bowtie2-local (bowtie2 --local) used default parameters.</p>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+        </div> <!-- box -->
+      </div> <!-- box-outer -->
+      <div class="bottom"></div>
+      <footer id="contentinfo" class="footer">
+          <div>
+              <a href="http://jiarong.github.io/blog">Jiarong Guo</a> (2013)
+          </div>
+          <div>
+              This work is licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a href="https://github.com/jarv/water-iris">Github</a>
+          </div>
+          <div>
+              powered by <a href="http://getpelican.com/">Pelican</a>
+              and <a href="http://python.org">Python</a>. 
+              <a href="http://github.com/jarv/water-iris">Theme</a> by <a href="http://jarv.org">John Jarvis</a> based on <a href="http://github.com/slok/iris">Iris</a>, <a href="https://github.com/getpelican/pelican-themes/tree/master/waterspill-en">Waterspill</a> and the <a href="http://flask.pocoo.org/">Flask</a> theme
+          </div>
+          <div>
+              Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/">font awesome</a>.
+              <a href="http://www.google.com/webfonts/specimen/Gabriela">Title</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+          </div>
+          <div class="social">
+                                      </div>
+      </footer><!-- /#contentinfo -->
+
+      <!--Add statistycs-->
+          </div>
+  </body>
+</html>
