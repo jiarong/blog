@@ -81,11 +81,10 @@ The multiple K merged assembly with 300bp minimum cutoff had **5.61%** reads map
 Now lets go back to the two original two problems:
 
 1. 25% reads thrown away by the digital normalization process should be from speices with good coverage (> 10).  
+   The bwa-mem shows 22.80% of reads contributing to the assembly and the number (22.80%) is close to 25%. However, the minimum length chosen here is 300bp. If longer minimum length was chosen, the mapping rate would be very low. Thus there is still room for improvement to get longer contigs. 
+
 2. low mapping back rate compared to the other project (10% -15%).
-
-1) The bwa-mem shows 22.80% of reads contributing to the assembly and the number (22.80%) is close to 25%. However, the minimum length chosen here is 300bp. If longer minimum length was chosen, the mapping rate would be very low. Thus there is still room for improvement to get longer contigs. 
-
-2) First, the metagenome yielding 10% -15% read mapping rate has very similar size to mine, but mine is pooled data from five different location so probably lower coverage. Second, I used bwa-aln instead of bowtie2-e2e. As shown in Table 2, bowtie2-e2e gave higher mapping rate than bwa-aln.
+   First, the metagenome yielding 10% -15% read mapping rate has very similar size to mine, but mine is pooled data from five different location so probably lower coverage. Second, I used bwa-aln instead of bowtie2-e2e. As shown in Table 2, bowtie2-e2e gave higher mapping rate than bwa-aln.
 
 Conclusion
 ==========
@@ -93,7 +92,7 @@ Conclusion
 The read mapping back rate is an important parameter for evaluating the quality of metagenome assembly and deciding whether sequencing depth is enough for assembly. Summary of the points learnt:
 
 - Minimum length cutoff and read mapping tool can change the mapping rate a lot, so it is important to check these two parameter when comparing the read mapping back rate. 
-- Unlike single genome assemlby, merging multiple K can metagenome assembly a lot.
+- Unlike single genome assemlby, merging multiple K can improve metagenome assembly a lot.
 - The mapping rate difference between bwa-mem and bwa-aln can be an indicator for chimeric level of the assembly.
 
 
