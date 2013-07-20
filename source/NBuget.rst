@@ -12,7 +12,8 @@ Dynamics
 
 Figure 1 shows a brief N-cycle diagram. Pools that can be currently measured at marked with triangle and gaps (either pools or dynamics) are marked with stars.
 
-.. figure:: |filename|/images/Nbuget.png
+.. .. figure:: |filename|/images/Nbuget.png
+.. figure:: static/images/Nbuget.png
    :width: 80%
 
    Figure 1. N-cycle.
