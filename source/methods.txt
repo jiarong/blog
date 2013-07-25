@@ -1,0 +1,9 @@
+Methods
+=======
+
+For assembly tool, velvet (velveth and velvetg) was used with default           parameters. Multiple K from 29 to 69 with a step of 10. SGA assembly was        produced by "sga index -a ropebwt", "sga filter --no-kmer-check --homopolymer-  check --low-complexity-check", "sga overlap -m 29", and "sga assemble" with     overlap (-m) from 29 to 69 with a step of 10. SGA (fm-merge) is used for        merging the assemblies from different K or overlap.
+
+For mapping tools, bwa-aln allowed 0.01 mismatch (bwa aln -n 0.01) and bwa-mem  (bwa mem) used default parameters.
+
+
+
