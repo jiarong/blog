@@ -4,7 +4,7 @@ Metagenome assembly - Are the contigs real?
 
 :Author: Jiarong Guo
 :Tags: Metagenomics, Assembly, Chimeric contig
-:Date: 2013-07-19
+:Date: 2013-07-24
 :Slug: asseChi
 :Category: Science
 

@@ -3,14 +3,14 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Jiarong Guo'
-SITENAME = u'2cents on science'
+SITENAME = u'<3 science'
 #SITEURL = 'http://lyorn.idyll.org/~gjr/blog'
 SITEURL = 'http://jiarong.github.io/blog'
 
 TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = u'en'
-LOCALE = ('usa', 'en_US')
+#LOCALE = ('en_US')
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None

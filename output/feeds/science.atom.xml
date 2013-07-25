@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>2cents on science</title><link href="http://jiarong.github.io/blog/" rel="alternate"></link><link href="http://jiarong.github.io/blog/feeds/science.atom.xml" rel="self"></link><id>http://jiarong.github.io/blog/</id><updated>2013-07-01T00:00:00-04:00</updated><entry><title>Metagenome Assembly - thoughts on reads mapping back rate</title><link href="http://jiarong.github.io/blog/asseMap.html" rel="alternate"></link><updated>2013-07-01T00:00:00-04:00</updated><author><name>Jiarong Guo</name></author><id>tag:jiarong.github.io/blog,2013-07-01:asseMap.html</id><summary type="html">&lt;p&gt;(with Adina Howe, James Tiedje, Titus Brown)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>&lt;3 science</title><link href="http://jiarong.github.io/blog/" rel="alternate"></link><link href="http://jiarong.github.io/blog/feeds/science.atom.xml" rel="self"></link><id>http://jiarong.github.io/blog/</id><updated>2013-07-01T00:00:00-04:00</updated><entry><title>Metagenome Assembly - thoughts on reads mapping back rate</title><link href="http://jiarong.github.io/blog/asseMap.html" rel="alternate"></link><updated>2013-07-01T00:00:00-04:00</updated><author><name>Jiarong Guo</name></author><id>tag:jiarong.github.io/blog,2013-07-01:asseMap.html</id><summary type="html">&lt;p&gt;(with Adina Howe, James Tiedje, Titus Brown)&lt;/p&gt;
 &lt;div class="section" id="background"&gt;
 &lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;This is a follow-up on &lt;a class="reference external" href="http://jiarong.github.io/blog/asseSum.html"&gt;another blog&lt;/a&gt; post on shotgun metagenome assembly of the ARMO (Amazon Rain Forest Microbial Observatory) project. Here I will mainly discuss the problem of low raw reads mapping back rate to the assembled contigs (Table 1).&lt;/p&gt;
@@ -43,16 +43,15 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;As shown in Table 1, pasture data have more and longer contigs assembled (with 800bp cutoff). The DNA content in the two metagenome assemblies share little similarity (Table 2). Rank abundance curves (Figure 5) show the pasture assembly has better coverage than forest assembly.&lt;/p&gt;
 &lt;p&gt;There are two reasons that I can not use a common explaination (excuse) &amp;quot;bacause it is a metagenome&amp;quot;: 1) &lt;a class="reference external" href="http://ivory.idyll.org/blog/"&gt;Dr.Titus Brown&lt;/a&gt; pointed out the digital normalization output showed the significant genomic saturation (figure 3, 4 in &lt;a class="reference external" href="http://jiarong.github.io/blog/asseSum.html"&gt;this post&lt;/a&gt;). About 25% of the overall data were thrown away by digital normalization, which means they are from genomes with more than 10 fold coverage) and should be assembled. 2) with the same methods (digital normalization and partitioning), &lt;a class="reference external" href="http://adina.github.io/"&gt;Dr. Adina Howe&lt;/a&gt; had acheived the between 10% - 15% raw read mapping back rate on another soil metagenome project.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="results"&gt;
 &lt;h2&gt;Results&lt;/h2&gt;
 &lt;p&gt;To track down the problem, I can think of two most probable causes:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;the contig length cutoff&lt;/li&gt;
-&lt;li&gt;the mapping tools&lt;/li&gt;
-&lt;li&gt;the assembly tools&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;contig length cutoff&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;mapping tools&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;assembly tools&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="section" id="contig-length-cutoff"&gt;
 &lt;h3&gt;Contig length cutoff&lt;/h3&gt;
@@ -61,12 +60,12 @@ In my data, 800bp minimum cutoff gives 0.37% mapping back rate, while 400bp cuto
 &lt;!-- .. figure:: |filename|/images/F.contigs.400bp.fasta.lenDist.png --&gt;
 &lt;div class="figure"&gt;
 &lt;img alt="static/images/F.contigs.400bp.fasta.lenDist.png" src="static/images/F.contigs.400bp.fasta.lenDist.png" style="width: 80%;" /&gt;
-&lt;p class="caption"&gt;Figure 1: cumulative distribution of contigs based on their lengths. Contigs have minimum length cutoff of 400bp.&lt;/p&gt;
+&lt;p class="caption"&gt;Figure 1: cumulative distribution of contigs based on their lengths. X axis is the length of contigs and Y axis is the number of contigs shorter than a certain length. Contigs have minimum length cutoff of 400bp.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="mapping-methods"&gt;
 &lt;h3&gt;Mapping methods&lt;/h3&gt;
-&lt;p&gt;I then tested the different mapping methods. The mappers (bwa-aln, bowtie2-e2e, bowtie) requiring the whole read mapped (global alignment) should have lower mapping rate than those (bwa-mem and bowtie2-local) allowing partial match (local alignment), which is confirmed by my testing results (Table 2). Bowtie2-e2e gave higher mapping rate bowtie due to allowing mismatches.&lt;/p&gt;
+&lt;p&gt;I then tested the different mapping methods. The mappers (bwa-aln, bowtie2-e2e, bowtie) requiring the whole read mapped (global alignment) should have lower mapping rate than those (bwa-mem and bowtie2-local) allowing partial match (local alignment), which is confirmed by my testing results (Table 2). Bowtie2-e2e gave higher mapping rate than bowtie due to allowing mismatches. Bwa-aln only allowed a certain number or percentage of mismatch (1% in my case), while bowtie2-e2e took any hit that has higher score than minimum, which is less stringent.&lt;/p&gt;
 &lt;table border="1" class="docutils"&gt;
 &lt;caption&gt;Table 2: Comparison of the different mapping methods. F is all the reads of the forest soil metagenome. Flump is a the biggest partition of that sample. The reads are mapped the contigs with 400bp minimum cutoff.&lt;/caption&gt;
 &lt;colgroup&gt;
@@ -138,7 +137,7 @@ In my data, 800bp minimum cutoff gives 0.37% mapping back rate, while 400bp cuto
 &lt;/div&gt;
 &lt;div class="section" id="improved-reads-mapping-back-rate"&gt;
 &lt;h3&gt;Improved reads mapping back rate&lt;/h3&gt;
-&lt;p&gt;The multiple K merged assembly with 300bp minimum cutoff had &lt;strong&gt;5.61%&lt;/strong&gt; reads mapped with bwa-aln and &lt;strong&gt;22.80%&lt;/strong&gt; with bwa-mem. The differece of bwa-aln and bwa-mem shows about 17% of reads are partially mapped to the assembly, which indicates the assembly is highly chimeric.&lt;/p&gt;
+&lt;p&gt;The multiple K merged assembly with 300bp minimum cutoff had &lt;strong&gt;6.75%&lt;/strong&gt; reads mapped with bwa-aln and &lt;strong&gt;22.80%&lt;/strong&gt; with bwa-mem. The differece of bwa-aln and bwa-mem shows about 17% of reads are partially mapped to the assembly, which indicates the assembly is highly chimeric.&lt;/p&gt;
 &lt;p&gt;Now lets go back to the two original two problems:&lt;/p&gt;
 &lt;ol class="arabic"&gt;
 &lt;li&gt;&lt;p class="first"&gt;25% reads thrown away by the digital normalization process should be from speices with good coverage (&amp;gt; 10).&lt;/p&gt;

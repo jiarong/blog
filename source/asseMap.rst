@@ -4,7 +4,7 @@ Metagenome Assembly - thoughts on reads mapping back rate
 
 :Author: Jiarong Guo
 :Tags: bioinformatics, assembly, metagenomics, mapping rate
-:Date: 2013-07-01
+:Date: 2013-07-22
 :Slug: asseMap
 :Category: science
 
