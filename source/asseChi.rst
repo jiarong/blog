@@ -13,18 +13,21 @@ with Adina Howe, James Tiedje, and Titus Brown
 Background
 ==========
 
-This is one of my assembly series. In `my other post <http://jiarong.github.io/blog/asseMap.html>`__ about reads mapping back rate, I found more reads only partially mapped to the contigs (about 15%) than those entirely amapped (about 7%), which suggested the *de brujin* graph assembler used (velvet) was putting wrong piecies together and creating chimeric contigs. This results led me to think about how to identify these chimeric contigs.
+This is one of my assembly series. In `my other post <http://jiarong.github.io/blog/asseMap.html>`__ about reads mapping back rate, I found more reads only partially mapped to the contigs (about 15%) than those entirely amapped (about 7%), which suggested the *de brujin* graph assembler used (velvet) was putting wrong piecies together and creating chimeric contigs (Figure 1). This results led me to think about how to identify these chimeric contigs.
 
 Two purposes of the post:
 
 - Identify chimeric contigs.
 - Make people aware of chimeric contigs from *de brujin* graph assembly.
 
-Figure X. Two read graph cross at one kmer.
+.. figure:: static/images/readChi.png
+   :width: 80%
+
+   Figure 1. *De brujin* graph of two reads sharing one kmer in the middle. Path c -> e -> b and a -> e -> d result in read level chimera.
 
 In shotgun metagenome data, a mixture of genomes are break down into reads by the sequencing method, and the reads are further break down into kmers to build *de brujin* graph. Thus there are two levels of breakdown: 1) genome level (to reads) and 2) read level to (kmer). Assembling is the reverse process of the breakdowns. Chimeric contigs can be generated at these two levels:
 
-1. In the kmer graph, if two reads share the same kmers, a part of one read can end up stitching to a part of the other read. I will call this type of chimera read chimera in the blog.
+1. In the kmer graph, if two reads share the same kmers, a part of one read can end up stitching to a part of the other read (Figure 1). I will call this type of chimera read chimera in the blog.
 
 2. If there are repeat regions longer than read length within or among genomes, one region of the genome can be falsely connected to another region far apart in the same genome or even in another genome by the repeat the region. I will call this type genomic chimera in the rest of the blog.
 
@@ -54,9 +57,9 @@ I assembled a partition of a metagenome and check the number of contigs with mor
 
 SGA assembly
 ------------
-`String Graph Assembler <http://www.homolog.us/blogs/blog/2012/02/11/string-graph-assembler/>__` (SGA) builds graph based on read overlap, so does not have read level chimeras. I add it here to see double check whether its contigs could be mostly >95% covered by bwa-aln. And the result is positive (Table 1).
+`String Graph Assembler <http://www.homolog.us/blogs/blog/2012/02/11/string-graph-assembler/>`__ (SGA) builds graph based on read overlap, so does not have read level chimeras. I add it here to see double check whether its contigs could be mostly >95% covered by bwa-aln. And the result is positive (Table 1).
 
-I thought the difference between bwa-aln and bwa-mem are also good indicator of the chimeric level of contigs. This is the case for velvet assembly, but not for SGA. 19.6% of reads are fully mapped by bwa-aln and already >95% covered 99.7% of the contigs, but additional 13.5% of reads are partially mapped to the same contigs already covered by reads fully mapped, so these reads does not contribute to build contigs in string graph and are probably sequence highly similar to the those fully mapped, e.g., same genes from the same taxa or house keeping genes.
+I thought the difference between bwa-aln and bwa-mem are also good indicator of the chimeric level of contigs. This is the case for velvet assembly, but not for SGA. 19.6% of reads are fully mapped by bwa-aln and already >95% covered 99.7% of the contigs, but additional 13.5% of reads are partially mapped to the same contigs already covered by reads fully mapped, so these reads does not contribute to build contigs in string graph and are probably sequences highly similar to the those fully mapped, e.g., same genes from the same taxa or house keeping genes.
 
 How to deal with the read level chimera?
 ----------------------------------------
@@ -65,7 +68,7 @@ In some case, only one region in the contig is not covered by fully aligned read
 
 Is string graph assembler better in general?
 --------------------------------------------
-The advantage of SGA for sure is that there is no need to worry about read level chimera. SGA generally takes more cpu time but less memory than VELVET. But VELVET generally deal with low coverage better. I have seen cases VELVET did better job than SGA (`HMP mock data <http://www.hmpdacc.org/HMMC/>`__).
+The advantage of SGA for sure is that there is no need to worry about read level chimera. SGA generally takes more cpu time but less memory than VELVET. But VELVET generally deal with low coverage better. I have seen cases VELVET did better job than SGA (`HMP mock data <http://www.hmpdacc.org/HMMC/>`__). Thus it is better to try both and compare.
 
 
 Conclusion
