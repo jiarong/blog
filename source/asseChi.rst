@@ -38,10 +38,10 @@ Results
 
 VELVET assembly
 ---------------
-I assembled a partition of a metagenome and check the number of contigs with more than 95% coverage. Bwa-aln only maps fully aligned reads and bwa-mem maps both partially and fully aligned reads. As shown in Table 1, only 15631 out of total 35755 (43.7%) contigs are >95% covered by fully aligned reads, which means the other contigs (56.3%) contigs are chimeric and contributed by partial reads. The 56.3% chimeric contigs can be further divided in two categories:
+I assembled a partition of a metagenome and check the number of contigs with more than 95% coverage. Bwa-aln only maps fully aligned reads and bwa-mem maps both partially and fully aligned reads. As shown in Table 1, only 16132 out of 42593 (37.9%) contigs are >95% covered by fully aligned reads, which means the other contigs (62.1%) contigs are chimeric and contributed by partial reads. The 62.1% chimeric contigs can be further divided in two categories:
 
-- based on that fact that 70.6% of contigs are >95% covered by both fully and partially mapped reads (bwa-mem), 26.9% (the difference of bwa-aln and bwa-mem) of the contigs are contributed by partial reads that are reported as a match by bwa-mem.
-- the rest chimeric contigs (29.4% of the contigs) are contributed by partial reads that not mappable by bwa-mem. 
+- based on that fact that 76% of contigs are >95% covered by both fully and partially mapped reads (bwa-mem), 28.1% (the difference of bwa-aln and bwa-mem) of the contigs are contributed by partial reads that are reported as a match by bwa-mem.
+- the rest chimeric contigs (34% of the contigs) are contributed by partial reads that not mappable by bwa-mem. 
 
 
 .. table:: Table 1: Mapping statitics of assemblies from VELVET and SGA. The data used here is a subsample (partition) of a soil metagenome.
@@ -49,17 +49,17 @@ I assembled a partition of a metagenome and check the number of contigs with mor
     ================  ======================  ===================
     method            reads mapped            contigs 95% covered
     ================  ======================  ===================
-    velvet + bwa-aln  344247/1002167 (0.344)  15631/35755 (0.437)
-    velvet + bwa-mem  664519/1002167 (0.663)  25258/35755 (0.706)
-    sga + bwa-aln     196769/1002167 (0.196)  12460/12492 (0.997)
-    sga + bwa-mem     431830/1002167 (0.431)  12471/12492 (0.998)
+    velvet + bwa-aln  397298/1002167 (0.396)  16132/42593 (0.379)
+    velvet + bwa-mem  761948/1002167 (0.760)  26573/42593 (0.624)
+    sga + bwa-aln     456915/1002167 (0.456)  35296/38202 (0.924)
+    sga + bwa-mem     750095/1002167 (0.748)  35715/38202 (0.935)
     ================  ======================  ===================
 
 SGA assembly
 ------------
-`String Graph Assembler <http://www.homolog.us/blogs/blog/2012/02/11/string-graph-assembler/>`__ (SGA) builds graph based on read overlap, so does not have read level chimeras. I add it here to see double check whether its contigs could be mostly >95% covered by bwa-aln. And the result is positive (Table 1).
+`String Graph Assembler <http://www.homolog.us/blogs/blog/2012/02/11/string-graph-assembler/>`__ (SGA) builds graph based on read overlap, so does not have read level chimeras. I add it here to see double check whether its contigs could be mostly >95% covered by bwa-aln. As shown in Table 1, more than 90% of contigs are covered by fully aligned reads (bwa-aln). The contigs not > 95% covered could be caused by reads contribute to more than one contigs and bwa-aln report one alignment for one read.
 
-I thought the difference between bwa-aln and bwa-mem are also good indicator of the chimeric level of contigs. This is the case for velvet assembly, but not for SGA. 19.6% of reads are fully mapped by bwa-aln and already >95% covered 99.7% of the contigs, but additional 13.5% of reads are partially mapped to the same contigs already covered by reads fully mapped, so these reads does not contribute to build contigs in string graph and are probably sequences highly similar to the those fully mapped, e.g., same genes from the same taxa or house keeping genes.
+I thought the difference between bwa-aln and bwa-mem are also good indicator of the chimeric level of contigs. This is the case for velvet assembly, but not for SGA. 45.6% of reads are fully mapped by bwa-aln and already >95% covered 92.4% of the contigs, but additional 20.8% of reads are partially mapped to the same contigs already covered by reads fully mapped, so these reads does not contribute to build contigs in string graph and are probably sequences highly similar to the those fully mapped, e.g., same genes from the same taxa or house keeping genes.
 
 How to deal with the read level chimera?
 ----------------------------------------
@@ -78,6 +78,8 @@ The chimeric contigs are well known problem in *de brujin* graph assembly, but m
 
 - The answer to question in title is yes and no. Yes, the read level chimeras can be identified as contigs with regions not covered by fully mapped reads. No, the genomic level chimera can only be resolved at sequencing level (longer reads, pair ends, and mate pairs).
 
-- Read level chimeras can take up large portion of assemblies produced by *de brujin* graph assembler (56.3% in my data).
+- Read level chimeras can take up large portion of assemblies produced by *de brujin* graph assembler (62.1% in my data).
 
 - Chimeric contigs may still contain real genomic regions. A solutions is to split them at the regions not covered by fully aligned reads and keep the fragments longer than minimum length cutoff.
+
+- How read level chimeras affect the annotation of assemblies need to be evaluated.
