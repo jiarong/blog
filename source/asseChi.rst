@@ -13,7 +13,7 @@ with Adina Howe, James Tiedje, and Titus Brown
 Background
 ==========
 
-This is one of my assembly series. In `my other post <http://jiarong.github.io/blog/asseMap.html>`__ about reads mapping back rate, I found more reads only partially mapped to the contigs (about 15%) than those entirely amapped (about 7%), which suggested the *de brujin* graph assembler used (velvet) was putting wrong piecies together and creating chimeric contigs (Figure 1). This results led me to think about how to identify these chimeric contigs.
+In `my other post <http://jiarong.github.io/blog/asseMap.html>`__ about reads mapping back rate, I found more reads only partially mapped to the contigs (about 15%) than those entirely amapped (about 7%), which suggested the *de brujin* graph assembler used (velvet) was putting wrong piecies together and creating chimeric contigs (Figure 1). This results led me to think about how to identify these chimeric contigs.
 
 Two purposes of the post:
 
