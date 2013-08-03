@@ -47,8 +47,8 @@ Here is an example for the above analysis: In Figure 1, if the assembly path is 
 
 On the other hand, if two reads are not similar (not polymorphic) and they just share a kmer in the middle, chimeric contigs in this case can potentially have defferent annotation and should be avoided. They can not be aligned with global alignment mapper but can be aligned with local alignment mapper, and can be further identified and removed using this characteristic.
 
-Which mapper should used for mapping reads back to assembly?
-============================================================
+Which mapper should be used for mapping reads back to assembly?
+===============================================================
 
 It depends on the purpose:
 
